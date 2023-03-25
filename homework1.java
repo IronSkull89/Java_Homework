@@ -13,7 +13,9 @@ public class homework1 {
         System.out.println(isLeapYear(2024));
 
         int[] repeatArray = createArray(3,6);
-        PrintArray(repeatArray, "");
+        if (repeatArray != null) {
+            PrintArray(repeatArray, "");
+        } else System.out.print("Массив не создан\n");
 
         int[] array0_1 = {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
         inverseArray(array0_1);
