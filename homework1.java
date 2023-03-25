@@ -13,14 +13,28 @@ public class homework1 {
         System.out.println(isLeapYear(2024));
 
         int[] repeatArray = createArray(3,6);
-        if (repeatArray != null) {
-            for (int item : repeatArray) {
-                System.out.print(item);
-            }
-        }
+        PrintArray(repeatArray, "");
 
-        int[][] array = new int[4][4]; // [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, x], [0, 0, 0, 1]]
-        int x = array[2][3];
+        int[] array0_1 = {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
+        inverseArray(array0_1);
+        PrintArray(array0_1,"");
+
+        int[] numbers = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+        DoublingLessNumber(numbers, 6);
+        PrintArray(numbers," ");
+
+        int [][] twoDimArray = {{5,7,3,17}, {7,0,4,12}, {8,5,2,3}, {5,3,2,11}};
+        UnitsDiagonalli(twoDimArray);
+        for (int i = 0; i < twoDimArray.length; i++) {
+            PrintArray(twoDimArray[i]," ");
+        }
+    }
+
+    private static void PrintArray(int[] array, String sep) {
+        for (int item : array) {
+            System.out.print(Integer.toString(item) + sep);
+        }
+        System.out.println('\n');
     }
 
     /**
@@ -63,15 +77,44 @@ public class homework1 {
         return null;
     }
 
+
 /**
  * 1. Задать целочисленный массив, состоящий из элементов 0 и 1.
  * Например: [ 1, 1, 0, 0, 1, 0, 1, 1, 0, 0 ]. С помощью цикла и условия заменить 0 на 1, 1 на 0;
- *
- * 2. Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ] пройти по нему циклом, и числа меньшие 6 умножить на 2;
- *
- * 3. Создать квадратный двумерный целочисленный массив (количество строк и столбцов одинаковое),
+ */
+    private static void inverseArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = Math.abs(--array[i]);
+        }
+    }
+
+ /** 2. Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ] пройти по нему циклом, и числа меньшие 6 умножить на 2;
+ */
+    private static void DoublingLessNumber(int[] array, int number) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < number) array[i] *= 2;
+        }
+    }
+
+ /** 3. Создать квадратный двумерный целочисленный массив (количество строк и столбцов одинаковое),
  * и с помощью цикла(-ов) заполнить его диагональные элементы единицами (можно только одну из диагоналей, если обе сложно).
  * Определить элементы одной из диагоналей можно по следующему принципу: индексы таких элементов равны, то есть [0][0], [1][1], [2][2], …, [n][n];
  * * Также заполнить элементы побочной диагонали
  */
+    private static void UnitsDiagonalli(int[][] array) {
+        int length = array.length;
+        boolean quadrat = true;
+        for (int i = 0; i < length; i++) {
+            if (array[i].length != length) {
+                quadrat = false;
+                break;
+            }
+        }
+        if (quadrat) {
+            for (int i = 0; i < length; i++) {
+                array[i][i] = 1;
+                array[i][length - i - 1] = 1;
+            }
+        }
+    }
 }
