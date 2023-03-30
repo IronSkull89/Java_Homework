@@ -1,17 +1,34 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.*;
+import StringPack.Strings;
+
+
 public class homework2 {
     public static void main(String[] args) {
 
-        System.out.println(buildString(7, 'f','K'));
+        System.out.println(Strings.buildString(7, 'f','K'));
+
+        buildFile("file.txt",100, "TEXT");
     }
 
-    static String buildString(int n, char c1, char c2) {
-        StringBuilder strBuild = new StringBuilder();
-        return buildRecursive(n, c1, c2, strBuild);
-    }
-
-    static String buildRecursive(int n, char c1, char c2, StringBuilder strBuild) {
-        if (n == 0) return strBuild.toString();
-        strBuild.append(c1);
-        return buildRecursive(n-1, c2, c1, strBuild);
+    static void buildFile(String fileName, int n, String str) {
+        Path path = Paths.get(fileName);
+        if (Files.notExists(path)) {
+            try {
+                Files.createFile(path);
+                try(FileWriter writer = new FileWriter(fileName, false))
+                {
+                    writer.write(Strings.buildString(n, str));
+                    writer.flush();
+                } catch(IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            } catch (Exception e) {
+                System.out.println("При создании файа произошла ошибка" + e.getMessage());
+            }
+        }
     }
 }
