@@ -9,7 +9,7 @@ import java.util.*;
 public class homework4 {
 
     public static void main(String[] args) {
-        Deque<String> consoleStack = new LinkedList<>();
+        LinkedList<String> consoleStack = new LinkedList<>();
         String inUser = "";
         Scanner in = new Scanner(System.in);
         while (!inUser.equals("exit")) {
@@ -17,9 +17,9 @@ public class homework4 {
             inUser = in.nextLine();
 
             if (inUser.equals("print")) {
-                Deque<String> tempConsoleStack = new ArrayDeque<>(consoleStack);
-                while(tempConsoleStack.peek() != null) {
-                    System.out.println(tempConsoleStack.pollLast());
+                ListIterator litr = consoleStack.listIterator(consoleStack.size());
+                while(litr.hasPrevious()) {
+                    System.out.println(litr.previous());
                 }
             }
             else if (inUser.equals("revert")) consoleStack.pollLast();
