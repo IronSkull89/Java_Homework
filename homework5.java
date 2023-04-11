@@ -23,7 +23,7 @@ public class homework5 {
         System.out.println(isCorrectParentheses("()[]{}<>"));
         System.out.println(isCorrectParentheses("([)]"));
         System.out.println(isCorrectParentheses("][]"));
-        System.out.println(isCorrectParentheses("[]{<()[]<>>"));
+        System.out.println(isCorrectParentheses("[]{<()[]<>>}"));
     }
 
     public static boolean isCorrectParentheses (String parentheses) {
